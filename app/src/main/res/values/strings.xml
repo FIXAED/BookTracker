@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">BookTracker</string>
+    <string name="nameBook">Название</string>
+    <string name="author">Автор</string>
+    <string name="genre">Жанр</string>
+    <string name="year_of_publication">Год издания</string>
+    <string name="isnb">ISBN</string>
+    <string name="is_read">Прочитал(а)</string>
+    <string name="full_name">Полное имя</string>
+    <string name="yearOfLife">Годы Жизни</string>
+    <string name="addAuthor">Добавить писателя</string>
+    <string name="add_book">Добавить книгу</string>
+    <string name="search_book">Найти книгу</string>
+
+    <string name="action_ok">Ок</string>
+    <string name="action_cancel">Cancel</string>
+
+
+    <string name="isbn">ISBN</string>
+    <string name="yearOfPublication">Год издания</string>
+
+
+</resources>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    tools:context=".controller.AuthorActivity" >
+
+    <TextView
+        android:id="@+id/fullNameTextView"
+        android:layout_width="229dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/full_name"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/editGroupButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/deleteGroupButton"
+        android:layout_width="52dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintEnd_toStartOf="@+id/editGroupButton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_delete" />
+
+    <ImageButton
+        android:id="@+id/editGroupButton"
+        android:layout_width="52dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
+</androidx.constraintlayout.widget.ConstraintLayout>
