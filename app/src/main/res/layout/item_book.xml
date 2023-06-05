@@ -39,7 +39,6 @@
         android:id="@+id/yearOfPublicationTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="174dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="10dp"
@@ -47,7 +46,6 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/isReadCheckBox"
         app:layout_constraintTop_toBottomOf="@+id/genreTextView" />
 
     <TextView
@@ -63,13 +61,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/authorTextView" />
 
-    <CheckBox
-        android:id="@+id/isReadCheckBox"
+    <TextView
+        android:id="@+id/isRead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
-        android:text="@string/is_read"
+        android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/genreTextView" />
 

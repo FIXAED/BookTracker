@@ -18,6 +18,6 @@
 
     <string name="isbn">ISBN</string>
     <string name="yearOfPublication">Год издания</string>
-
+    <string name="noRead">Не прочитал(а)</string>
 
 </resources>

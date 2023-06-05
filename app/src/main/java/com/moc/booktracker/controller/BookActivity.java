@@ -1,13 +1,19 @@
 package com.moc.booktracker.controller;
 
+import static java.security.AccessController.getContext;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.moc.booktracker.MyApplication;
 import com.moc.booktracker.R;
@@ -21,7 +27,6 @@ import java.util.List;
 public class BookActivity extends AppCompatActivity {
 
     private long authorId;
-    private String searchLastName;
     private MyApplication app;
     private ListView bookListView;
     private BookAdapter bookAdapter;
@@ -33,14 +38,9 @@ public class BookActivity extends AppCompatActivity {
         setContentView(R.layout.activity_book);
 
         authorId = getIntent().getLongExtra("id", 0);
-        searchLastName = getIntent().getStringExtra("searchLastname");
 
         if (getSupportActionBar() != null) {
-            if (searchLastName == null) {
-                getSupportActionBar().setTitle("Библиотека");
-            } else {
-                getSupportActionBar().setTitle("Search lastname: " + searchLastName);
-            }
+            getSupportActionBar().setTitle("Библиотека");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
@@ -60,7 +60,9 @@ public class BookActivity extends AppCompatActivity {
             });
         }).start();
 
+
     }
+
 
     @Override
     protected void onStart() {

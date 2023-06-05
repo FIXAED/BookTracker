@@ -3,12 +3,16 @@ package com.moc.booktracker.controller;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.moc.booktracker.MyApplication;
@@ -30,18 +34,20 @@ public class BookProfileActivity extends AppCompatActivity {
     private EditText yearOfPublicationEditText;
 
     private BookService bookService;
+    CheckBox isReadCheckBox;
     private EditText genreEditText;
     Button saveButton;
     ImageButton deleteButton;
 
-    private BookService studentService;
 
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_profile);
 
-        studentService = ((MyApplication) getApplication()).bookService;
+        bookService = ((MyApplication) getApplication()).bookService;
 
         authorId = getIntent().getLongExtra("authorId", -1);
         if (authorId == -1) {
@@ -66,6 +72,7 @@ public class BookProfileActivity extends AppCompatActivity {
         yearOfPublicationEditText = findViewById(R.id.yearOfPublicationEditText);
         genreEditText = findViewById(R.id.genreEditText);
 
+        isReadCheckBox =  findViewById(R.id.isReadCheckBox);
         saveButton = findViewById(R.id.saveButton);
         deleteButton = findViewById(R.id.deleteButton);
 
@@ -73,7 +80,7 @@ public class BookProfileActivity extends AppCompatActivity {
 
         if (isForEditing) {
             new Thread(() -> {
-                book = studentService.getBook(bookId);
+                book = bookService.getBook(bookId);
                 runOnUiThread(() -> {
                     titleEditText.setText(book.getName());
                     yearOfPublicationEditText.setText(book.getYear_of_publication() + "");
@@ -81,6 +88,8 @@ public class BookProfileActivity extends AppCompatActivity {
                 });
             }).start();
         }
+
+
 
         saveButton.setOnClickListener((v) -> {
 
@@ -92,6 +101,12 @@ public class BookProfileActivity extends AppCompatActivity {
             book.setYear_of_publication(Integer.parseInt(yearOfPublicationEditText.getText().toString()));
             book.setGenre(genreEditText.getText().toString());
 
+            if (isReadCheckBox.isChecked()){
+                book.setIs_read(true);
+            }else{
+                book.setIs_read(false);
+            }
+
             if (book.getName() == null || book.getName().length() == 0) {
                 return;
             }
@@ -99,7 +114,7 @@ public class BookProfileActivity extends AppCompatActivity {
             new Thread(() -> {
                 if (!isForEditing) {
                     book.setAuthorId(authorId);
-                    book = studentService.createBook(book);
+                    book = bookService.createBook(book);
                     bookId = book.getId();
                 } else {
                     bookService.editBook(book);
@@ -120,6 +135,7 @@ public class BookProfileActivity extends AppCompatActivity {
             deleteButton.setVisibility(View.GONE);
         }
 
+
         deleteButton.setOnClickListener((v) -> {
             if (isForEditing) {
                 new Thread(() -> {
@@ -128,7 +144,7 @@ public class BookProfileActivity extends AppCompatActivity {
                         runOnUiThread(this::finish);
                     } catch (IllegalArgumentException e) {
                         runOnUiThread(() -> {
-                            Toast.makeText(this, "Failed to delete student", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "Не удалось удалить книгу", Toast.LENGTH_SHORT).show();
                         });
                     }
                 }).start();
@@ -149,5 +165,6 @@ public class BookProfileActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 
 }
